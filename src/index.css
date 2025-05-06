@@ -1,4 +1,4 @@
-header{
+header {
   height: 100px;
   background-color: rgb(46, 46, 46);
   color: white;
@@ -6,13 +6,13 @@ header{
   align-items: center;
 }
 
-.header-list{
+.header-list {
   display: flex;
   justify-content: center;
   padding: 0 20px;
   width: 100%;
-  
-  a{
+
+  a {
     text-decoration: none;
     align-items: center;
     color: white;
@@ -21,8 +21,23 @@ header{
     font-weight: 600;
     padding: 0 10rem;
 
-    &:hover{
+    &:hover {
       color: rgb(255, 255, 255, 0.8);
     }
+  }
+}
+
+.car {
+  border: 1px solid black;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 5px;
+  font-weight: 600;
+  background-color: rgb(46, 46, 46);
+  color: white;
+  &:hover {
+    cursor: pointer;
+    background-color: rgb(139, 139, 139);
+    border: 1px solid rgba(144, 144, 144, 0.342);
   }
 }
