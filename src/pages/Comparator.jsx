@@ -27,52 +27,54 @@ const Comparator = () => {
   };
 
   return (
-    <div className='container my-5'>
-      <h1>Scegli due modelli da comparare:</h1>
+    <div className='container comparatore my-5'>
+      <h1 className='text-center'>CONFRONTA DUE AUTOMOBILI</h1>
       <section className='my-5 d-flex justify-content-center'>
         <div className='mx-5 w-50'>
-          <select className="form-select" defaultValue={'default'} onChange={handleFirstCar}>
+          <select className="form-select text-center " defaultValue={'default'} onChange={handleFirstCar}>
             <option value="default" disabled>Scegli un'automobile...</option>
             {cars.map(car => (
               <option key={car.id} value={car.id}>{car.title}</option>
             ))}
           </select>
           {firstCar && (
-            <div className="mt-3">
-              <p>Scuderia: <span>{firstCar.brand}</span></p>
-              <p>Modello: <span>{firstCar.model}</span></p>
-              <p>Anno di uscita: <span>{firstCar.releaseYear}</span></p>
-              <p>Cambio: <span>{firstCar.trasmissione}</span></p>
-              <p>Prezzo a partire da: <span>{firstCar.price},00 €</span></p>
-              <p>Carburante: <span>{firstCar.fuelType}</span></p>
-              <p>Numero di porte: <span>{firstCar.doors}</span></p>
-              <p>Categoria: <span>{firstCar.category}</span></p>
-              <p>Nazione della scuderia: <span>{firstCar.nationality}</span></p>
-              <p>Potenza motore in cavalli: <span>{firstCar.horsepower} cv</span></p>
-              <p>Velocità massima: <span>{firstCar.topSpeed} km/h</span></p>
+            <div className="mt-3 comparatore text-center">
+              <p><span>Scuderia:</span> {firstCar.brand}</p>
+              <p><span>Modello:</span> {firstCar.model}</p>
+              <p><span>Anno di uscita:</span> {firstCar.releaseYear}</p>
+              <p><span>Cambio:</span> {firstCar.trasmissione}</p>
+              <p><span>Prezzo a partire da:</span> {firstCar.price ? firstCar.price.toLocaleString('it-IT') : 'N/A'},00 €</p>
+
+              <p><span>Carburante:</span> {firstCar.fuelType ? firstCar.fuelType.join(', ') : ''}</p>
+              <p><span>Numero di porte:</span> {firstCar.doors}</p>
+              <p><span>Categoria:</span> {firstCar.category}</p>
+              <p><span>Nazione della scuderia:</span> {firstCar.nationality}</p>
+              <p><span>Potenza motore in cavalli:</span> {firstCar.horsepower} cv</p>
+              <p><span>Velocità massima:</span> {firstCar.topSpeed} km/h</p>
             </div>
           )}
         </div>
         <div className='mx-5 w-50'>
-          <select className="form-select" defaultValue={'default'} onChange={handleLastCar}>
+          <select className="form-select text-center" defaultValue={'default'} onChange={handleLastCar}>
             <option value="default" disabled>Scegli un'automobile...</option>
             {cars.map(car => (
               <option key={car.id} value={car.id}>{car.title}</option>
             ))}
           </select>
           {lastCar && (
-            <div className="mt-3">
-              <p>Scuderia: <span>{lastCar.brand}</span></p>
-              <p>Modello: <span>{lastCar.model}</span></p>
-              <p>Anno di uscita: <span>{lastCar.releaseYear}</span></p>
-              <p>Cambio: <span>{lastCar.trasmissione}</span></p>
-              <p>Prezzo a partire da: <span>{lastCar.price},00 €</span></p>
-              <p>Carburante: <span>{lastCar.fuelType}</span></p>
-              <p>Numero di porte: <span>{lastCar.doors}</span></p>
-              <p>Categoria: <span>{lastCar.category}</span></p>
-              <p>Nazione della scuderia: <span>{lastCar.nationality}</span></p>
-              <p>Potenza motore in cavalli: <span>{lastCar.horsepower} cv</span></p>
-              <p>Velocità massima: <span>{lastCar.topSpeed} km/h</span></p>
+            <div className="mt-3 comparatore text-center">
+              <p><span>Scuderia:</span> {lastCar.brand}</p>
+              <p><span>Modello:</span> {lastCar.model}</p>
+              <p><span>Anno di uscita:</span> {lastCar.releaseYear}</p>
+              <p><span>Cambio:</span> {lastCar.trasmissione}</p>
+              <p><span>Prezzo a partire da:</span> {lastCar.price ? lastCar.price.toLocaleString('it-IT') : 'N/A'},00 €</p>
+
+              <p><span>Carburante:</span> {lastCar.fuelType ? lastCar.fuelType.join(', ') : ''}</p>
+              <p><span>Numero di porte:</span> {lastCar.doors}</p>
+              <p><span>Categoria:</span> {lastCar.category}</p>
+              <p><span>Nazione della scuderia:</span> {lastCar.nationality}</p>
+              <p><span>Potenza motore in cavalli:</span> {lastCar.horsepower} cv</p>
+              <p><span>Velocità massima:</span> {lastCar.topSpeed} km/h</p>
             </div>
           )}
         </div>

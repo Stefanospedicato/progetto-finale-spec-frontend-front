@@ -1,20 +1,29 @@
+* {
+  font-family: "IBM Plex Mono", monospace;
+}
+
 header {
   height: 100px;
   background-color: rgb(46, 46, 46);
   color: white;
   display: flex;
-  align-items: center;
+  justify-content: center;
 }
 
 .header-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-around;
+  width: 50%;
   a {
+    padding: 10px;
     text-decoration: none;
     align-items: center;
     color: white;
     text-transform: uppercase;
     font-size: 1.2rem;
     font-weight: 600;
-    padding: 0 10rem;
 
     &:hover {
       color: rgb(255, 255, 255, 0.8);
@@ -41,4 +50,8 @@ header {
   span {
     font-weight: 600;
   }
+}
+
+.comparatore span {
+  font-weight: 600;
 }

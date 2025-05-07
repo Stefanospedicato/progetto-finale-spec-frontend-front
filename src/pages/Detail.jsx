@@ -12,24 +12,22 @@ const Detail = () => {
   }, [])
   console.log(car);
 
-
   const { title, brand, model, releaseYear, trasmissione, price, fuelType, doors, category, nationality, horsepower, topSpeed } = car
 
   return (
     <div className='container my-5 car-details'>
       <h1 className='mb-5'>{title}</h1>
-      <p>Scuderia: <span>{brand}</span></p>
-      <p>Modello: <span>{model}</span></p>
-      <p>Anno di uscita: <span>{releaseYear}</span></p>
-      <p>Cambio: <span>{trasmissione}</span></p>
-      <p>Prezzo a partire da: <span>{price},00 €</span></p>
-      <p>Carburante: <span>{fuelType}</span></p>
-      <p>Numero di porte: <span>{doors}</span></p>
-      <p>Categoria: <span>{category}</span></p>
-      <p>Nazione della scuderia: <span>{nationality}</span></p>
-      <p>Potenza motore in cavalli: <span>{horsepower} cv</span></p>
-      <p>Velocità massima: <span>{topSpeed} km/h</span></p>
-
+      <p><span>Scuderia:</span> {brand}</p>
+      <p><span>Modello:</span> {model}</p>
+      <p><span>Anno di uscita:</span> {releaseYear}</p>
+      <p><span>Cambio:</span> {trasmissione}</p>
+      <p><span>Prezzo a partire da:</span> {price && price.toLocaleString('it-IT')},00 €</p>
+      <p><span>Carburante:</span> {fuelType ? fuelType.join(', ') : ''}</p>
+      <p><span>Numero di porte:</span> {doors}</p>
+      <p><span>Categoria:</span> {category}</p>
+      <p><span>Nazione della scuderia:</span> {nationality}</p>
+      <p><span>Potenza motore in cavalli:</span> {horsepower} cv</p>
+      <p><span>Velocità massima:</span> {topSpeed} km/h</p>
     </div>
   )
 }

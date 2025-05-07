@@ -6,8 +6,8 @@ const Header = () => {
     <header>
       <div className='header-list container'>
         <Link to='/homepage'>home</Link>
-        <Link to='/cars'>cars</Link>
-        <Link to='/comparator'>comparatore</Link>
+        <Link to='/cars'>automobili</Link>
+        <Link to='/comparator'>confronta</Link>
       </div>
     </header>
   )
