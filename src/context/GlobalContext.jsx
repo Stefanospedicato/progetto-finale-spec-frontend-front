@@ -7,22 +7,29 @@ const GlobalContext = createContext()
 const GlobalProvider = ({ children }) => {
 
   const [cars, setCars] = useState([])
+  const [car, setCar] = useState({})
   const [filteredCars, setFilteredCars] = useState([]);
 
-  const fetchCars = async () => {
+  const fetchCarsList = async () => {
     const response = await fetch(`http://localhost:3001/cars`)
     const data = await response.json()
     setCars(data)
     setFilteredCars(data);
   }
 
+  const fetchCar = async (id) => {
+    const response = await fetch(`http://localhost:3001/cars/${id}`)
+    const data = await response.json()
+    setCar(data.car)
+  }
+
   useEffect(() => {
-    fetchCars()
+    fetchCarsList()
   }, [])
 
 
 
-  const value = { fetchCars, cars, filteredCars, setFilteredCars }
+  const value = { fetchCarsList, cars, filteredCars, setFilteredCars, fetchCar, car }
   return (
     <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>
   )
