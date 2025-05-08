@@ -6,6 +6,7 @@ import CarsList from './pages/CarsList'
 import Homepage from './pages/Homepage'
 import Detail from './pages/Detail'
 import Comparator from './pages/Comparator'
+import Favorites from './pages/Favorites'
 
 const App = () => {
   return (
@@ -13,9 +14,10 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<DefaultLayout />} >
-            <Route path='/homepage' element={<Homepage />} />
+            <Route path='/' element={<Homepage />} />
             <Route path='/cars' element={<CarsList />} />
             <Route path='/comparator' element={<Comparator />} />
+            <Route path='/favorites' element={<Favorites />} />
             <Route path='/cars/:id' element={<Detail />} />
           </Route>
         </Routes>

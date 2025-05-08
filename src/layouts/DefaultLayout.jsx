@@ -5,8 +5,8 @@ import Header from '../components/Header'
 const DefaultLayout = () => {
   return (
     <>
-    <Header />
-      <div className='container'>
+      <Header />
+      <div className=''>
         <Outlet />
       </div>
     </>

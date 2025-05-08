@@ -5,9 +5,10 @@ const Header = () => {
   return (
     <header>
       <div className='header-list container'>
-        <Link to='/homepage'>home</Link>
+        <Link to='/'>home</Link>
         <Link to='/cars'>automobili</Link>
         <Link to='/comparator'>confronta</Link>
+        <Link to='/favorites'>desideri</Link>
       </div>
     </header>
   )
