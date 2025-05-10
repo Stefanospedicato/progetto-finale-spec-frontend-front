@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useGlobalContext } from '../context/GlobalContext';
 import { useNavigate } from 'react-router-dom';
 import { RiStarSFill, RiStarLine } from "react-icons/ri";
@@ -27,9 +27,22 @@ const CarsList = () => {
     );
   }
 
-  const handleSearch = (e) => {
-    setSearch(e.target.value);
-  };
+  function debounce(func, delay) {
+    let timer;
+    return (value) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func(value);
+      }, delay);
+    };
+  }
+
+  const handleSearch = useCallback(
+    debounce((e) => {
+      setSearch(e.target.value);
+    }, 300),
+    []
+  );
 
   const handleFilter = (e) => {
     setSelectedCategory(e.target.value);
@@ -63,8 +76,8 @@ const CarsList = () => {
         filteredCars.map(car => {
           const isFavorite = favorites.some(fav => fav.id === car.id);
           return (
-            <div className='info-card pointer text-center' key={car.id}>
-              <h4 onClick={() => navigate(`/cars/${car.id}`)}>
+            <div className='info-card pointer text-center' onClick={() => navigate(`/cars/${car.id}`)} key={car.id}>
+              <h4>
                 {car.title}
               </h4>
               <h6>Categoria: {car.category}</h6>

@@ -12,6 +12,7 @@ header {
   justify-content: center;
   width: 100%;
   z-index: 1;
+  background-color: rgba(255, 255, 255, 0.4);
 }
 
 .header-list {
@@ -27,10 +28,11 @@ header {
     align-items: center;
     text-transform: uppercase;
     font-size: 1.2rem;
-    color: rgba(93, 93, 93, 0.8);
+    color: rgba(0, 0, 0, 0.8);
     font-weight: 600;
     &:hover {
-      color: rgb(44, 44, 44);
+      filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.7));
+      text-decoration: underline;
     }
   }
 }
@@ -63,8 +65,18 @@ span {
   font-weight: 600;
 }
 
+.car-image {
+  overflow: hidden;
+  img {
+    aspect-ratio: 16/9;
+    width: 100%;
+    opacity: 0.95;
+  }
+}
+
 .logo {
   aspect-ratio: 1/1;
+  width: 130px;
   max-width: 150px;
   user-select: none;
 }
@@ -167,6 +179,9 @@ select option {
 
 .category-select {
   width: 70%;
+}
+.description {
+  font-style: italic;
 }
 
 @media (max-width: 768px) {
