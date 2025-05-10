@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useGlobalContext } from '../context/GlobalContext';
-import { RiStarSFill, RiStarLine } from "react-icons/ri";
 
 const Comparator = () => {
 
   const { cars, favorites, toggleFavorite, car } = useGlobalContext();
   const [firstCar, setFirstCar] = useState(null);
   const [lastCar, setLastCar] = useState(null);
-  const isFavorite = favorites.some(fav => fav.id === car.id);
   const orderedCars = cars.sort((a, b) => a.title.localeCompare(b.title));
 
   const fetchCar = async (id) => {
@@ -34,7 +32,7 @@ const Comparator = () => {
     <div className='container comparatore my-5'>
       <h1 className='text-center'>CONFRONTA DUE AUTOMOBILI</h1>
       <section className='my-5 d-flex justify-content-center'>
-        <div className='mx-5 w-50'>
+        <div className='w-50 mx-md-5 mx-1'>
           <select className="form-select text-center " defaultValue={'default'} onChange={handleFirstCar}>
             <option value="default" disabled>Scegli un'automobile...</option>
             {favorites.length > 0 && <option value="default" disabled className='fw-bold'>Le tue scelte</option>}
@@ -47,8 +45,7 @@ const Comparator = () => {
             ))}
           </select>
           {firstCar && (
-            <div className="mt-3 comparatore text-center">
-
+            <div className="mt-3 text-center info-card">
               <img src={firstCar.logo} alt={firstCar.title} className='logo mb-5' />
               <p><span>Scuderia:</span> {firstCar.brand}</p>
               <p><span>Modello:</span> {firstCar.model}</p>
@@ -62,13 +59,13 @@ const Comparator = () => {
               <p><span>Potenza motore in cavalli:</span> {firstCar.horsepower} cv</p>
               <p><span>Velocità massima:</span> {firstCar.topSpeed} km/h</p>
               {favorites.some(fav => fav.id === firstCar.id) ?
-                <button className='w-100 btn btn-dark mt-3' onClick={() => toggleFavorite(firstCar)}>Rimuovi dalle tue scelte</button> :
-                <button className='w-100 btn btn-info mt-3' onClick={() => toggleFavorite(firstCar)}>Aggiungi alle tue scelte</button>
+                <button className='w-100 btn btn-dark mt-3' onClick={() => toggleFavorite(firstCar)}>Rimuovi dai tuoi desideri</button> :
+                <button className='w-100 btn btn-info mt-3' onClick={() => toggleFavorite(firstCar)}>Aggiungi ai tuoi desideri</button>
               }
             </div>
           )}
         </div>
-        <div className='mx-5 w-50'>
+        <div className='w-50 mx-md-5 mx-1'>
           <select className="form-select text-center" defaultValue={'default'} onChange={handleLastCar}>
             <option value="default" disabled>Scegli un'automobile...</option>
             {favorites.length > 0 && <option value="default" disabled className='fw-bold'>Le tue scelte</option>}
@@ -81,7 +78,7 @@ const Comparator = () => {
             )))}
           </select>
           {lastCar && (
-            <div className="mt-3 comparatore text-center">
+            <div className="mt-3 text-center info-card">
               <img src={lastCar.logo} alt={lastCar.title} className='logo mb-5' />
               <p><span>Scuderia:</span> {lastCar.brand}</p>
               <p><span>Modello:</span> {lastCar.model}</p>
@@ -95,8 +92,8 @@ const Comparator = () => {
               <p><span>Potenza motore in cavalli:</span> {lastCar.horsepower} cv</p>
               <p><span>Velocità massima:</span> {lastCar.topSpeed} km/h</p>
               {favorites.some(fav => fav.id === lastCar.id) ?
-                <button className='w-100 btn btn-dark mt-3' onClick={() => toggleFavorite(lastCar)}>Rimuovi dalle tue scelte</button> :
-                <button className='w-100 btn btn-info mt-3' onClick={() => toggleFavorite(lastCar)}>Aggiungi alle tue scelte</button>
+                <button className='w-100 btn btn-dark mt-3' onClick={() => toggleFavorite(lastCar)}>Rimuovi dai desideri</button> :
+                <button className='w-100 btn btn-info mt-3' onClick={() => toggleFavorite(lastCar)}>Aggiungi ai tuoi desideri</button>
               }
             </div>
           )}

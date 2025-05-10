@@ -16,12 +16,12 @@ const Detail = () => {
 
 
   return (
-    <div className='container car-details'>
+    <div className='container info-card p-5'>
       <div className='d-flex justify-content-between'>
         <h1 className='mb-5 align-self-center'>
           {isFavorite ?
-            <RiStarSFill className='full-star p-2' onClick={() => toggleFavorite(car)} /> :
-            <RiStarLine className='empty-star p-2' onClick={() => toggleFavorite(car)} />
+            <RiStarSFill className='full-star-detail p-2' onClick={() => toggleFavorite(car)} /> :
+            <RiStarLine className='empty-star-detail p-2' onClick={() => toggleFavorite(car)} />
           }
           {car.title}
         </h1>
