@@ -2,7 +2,7 @@ import React from 'react';
 import { useGlobalContext } from '../context/GlobalContext';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import { RiStarSFill, RiStarLine } from "react-icons/ri";
+import { IoIosStar, IoIosStarOutline } from "react-icons/io";
 
 
 const Detail = () => {
@@ -18,11 +18,11 @@ const Detail = () => {
   return (
     <div className='container p-5'>
       <div className='d-flex justify-content-between'>
-        <div className='mb-3 w-100 w-md-75 align-self-center'>
+        <div className='noselect mb-3 w-100 w-md-75 align-self-center'>
           <h1>
             {isFavorite ?
-              <RiStarSFill className='full-star-detail p-2' onClick={() => toggleFavorite(car)} /> :
-              <RiStarLine className='empty-star-detail p-2' onClick={() => toggleFavorite(car)} />
+              <IoIosStar className='full-star-detail p-2' onClick={() => toggleFavorite(car)} /> :
+              <IoIosStarOutline className='empty-star-detail p-2' onClick={() => toggleFavorite(car)} />
             }
             {car.title}
           </h1>

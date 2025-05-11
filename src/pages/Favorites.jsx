@@ -1,4 +1,3 @@
-import React from 'react';
 import { useGlobalContext } from '../context/GlobalContext';
 import { useNavigate } from 'react-router-dom';
 const Favorites = () => {
@@ -26,7 +25,11 @@ const Favorites = () => {
             </div>
           ))
         ) : (
-          <p>Nessuna macchina aggiunta alle tue scelte...</p>
+          <div>
+            <p>Aggiungi un'automobile ai tuoi desideri per visualizzarla qui</p>
+            <button className='btn btn-dark m-2 w-100' onClick={() => navigate('/cars')}>Scopri</button>
+          </div>
+
         )}
 
       </div>

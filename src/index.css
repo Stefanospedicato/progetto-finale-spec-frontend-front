@@ -37,6 +37,10 @@ header {
   }
 }
 
+.noselect {
+  user-select: none;
+}
+
 .pointer {
   cursor: pointer;
 }
@@ -67,9 +71,11 @@ span {
 
 .car-image {
   overflow: hidden;
+  width: 700px;
+  margin-left: 40px;
   img {
     aspect-ratio: 16/9;
-    width: 100%;
+    object-fit: cover;
     opacity: 0.95;
   }
 }
@@ -195,5 +201,17 @@ select option {
   .favorite-card img {
     max-width: 100px;
     margin-bottom: 10px;
+  }
+
+  .car-image {
+    width: 500px;
+    margin-left: 0px;
+  }
+}
+
+@media (max-width: 576px) {
+  .car-image {
+    width: 400px;
+    margin-left: 0px;
   }
 }

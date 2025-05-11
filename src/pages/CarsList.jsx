@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import { useGlobalContext } from '../context/GlobalContext';
 import { useNavigate } from 'react-router-dom';
-import { RiStarSFill, RiStarLine } from "react-icons/ri";
+import { IoIosStar, IoIosStarOutline } from "react-icons/io";
 
 const CarsList = () => {
   const { cars, favorites, toggleFavorite } = useGlobalContext();
@@ -40,7 +40,7 @@ const CarsList = () => {
   const handleSearch = useCallback(
     debounce((e) => {
       setSearch(e.target.value);
-    }, 300),
+    }, 1000),
     []
   );
 
@@ -76,28 +76,24 @@ const CarsList = () => {
         filteredCars.map(car => {
           const isFavorite = favorites.some(fav => fav.id === car.id);
           return (
-            <div className='info-card pointer text-center' onClick={() => navigate(`/cars/${car.id}`)} key={car.id}>
-              <h4>
-                {car.title}
-              </h4>
-              <h6>Categoria: {car.category}</h6>
-              {isFavorite ? (
-                <div className='toggle-favorite'>
-                  <span className='align-self-center'>Rimuovi dalla lista desideri </span>
-                  <RiStarSFill className='full-star' onClick={(event) => {
+            <div className='info-card pointer text-center d-flex justify-content-between' onClick={() => navigate(`/cars/${car.id}`)} key={car.id}>
+              <div className='d-flex flex-column justify-content-center mx-auto'>
+                <h4 className='mx-auto'>{car.title}</h4>
+                <h6 className='mx-auto'>Categoria: {car.category}</h6>
+              </div>
+              <div className='align-self-center'>
+                {isFavorite ? (
+                  <IoIosStar className='full-star pointer' onClick={(event) => {
                     event.stopPropagation();
                     toggleFavorite(car);
                   }} />
-                </div>
-              ) : (
-                <div className='toggle-favorite'>
-                  <span className='align-self-center'>Aggiungi alla lista desideri</span>
-                  <RiStarLine className='empty-star' onClick={(event) => {
+                ) : (
+                  <IoIosStarOutline className='empty-star pointer' onClick={(event) => {
                     event.stopPropagation();
                     toggleFavorite(car);
                   }} />
-                </div>
-              )}
+                )}
+              </div>
             </div>
           );
         })
@@ -109,3 +105,4 @@ const CarsList = () => {
 };
 
 export default CarsList;
+
