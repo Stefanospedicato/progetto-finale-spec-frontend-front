@@ -111,7 +111,7 @@ const Create = () => {
   };
 
   const isValid = (formData) => {
-    const { title, category, releaseYear, brand, doors, fuelType, nationality, model, trasmissione } = formData;
+    const { title, category, releaseYear, brand, doors, fuelType, nationality, model, trasmissione, logo } = formData;
     return (
       title.trim() !== '' && title.length >= 3 &&
       brand.trim() !== '' &&
@@ -120,7 +120,7 @@ const Create = () => {
       releaseYear > 1900 &&
       brand.trim() !== '' &&
       doors > 0 &&
-      Array.isArray(fuelType) && fuelType.length > 0 &&
+      fuelType.length > 0 && fuelType[0] !== 'default' &&
       nationality.trim() !== '' &&
       model.trim() !== '' &&
       trasmissione !== 'default'
@@ -179,7 +179,7 @@ const Create = () => {
         <label className='w-100'>
           <span>Carburante (se più di uno separati da una virgola):</span>
           <select name="fuelType" defaultValue="default" onChange={handleChange} className='form-control w-100'>
-            <option value="default">Scegli un tipo di carburante...</option>
+            <option value="default" disabled>Scegli un tipo di carburante...</option>
             <option value="Benzina">Benzina</option>
             <option value="Diesel">Diesel</option>
             <option value="GPL">GPL</option>
@@ -189,12 +189,12 @@ const Create = () => {
             <option value="Diesel, Elettrico">Diesel, Elettrico</option>
             <option value="Benzina, GPL">Benzina, GPL</option>
           </select>
-          {formData.fuelType === 'default' && <span className='error-message'>Selezionare un tipo di carburante valido</span>}
+          {formData.fuelType.length === 0 || formData.fuelType[0] === 'default' && <span className='error-message'>Selezionare un tipo di carburante valido</span>}
         </label>
         <label className='w-100'>
           <span>Cambio:</span>
           <select className='form-control w-100' defaultValue='default' onChange={handleChange} name='trasmissione'>
-            <option value="default">Seleziona un cambio...</option>
+            <option value="default" disabled>Seleziona un cambio...</option>
             <option value="Manuale">Manuale</option>
             <option value="Automatico">Automatico</option>
           </select>
@@ -216,10 +216,9 @@ const Create = () => {
         <label className='w-100'>
           <span>Logo scuderia (link):</span>
           <select name="logo" onChange={handleChange} defaultValue='default' className='form-control w-100'>
-            <option value="default">Scegli un logo...</option>
+            <option value="default" disabled>Scegli un logo...</option>
             {scuderie.map((logo, index) => <option key={index}>{logo}</option>)}
           </select>
-          {formData.logo === 'default' && <span className='error-message'>Selezionare un logo valido</span>}
         </label>
         <label className='w-100'>
           <span>Immagine automobile (link, facoltativo):</span>
