@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useGlobalContext } from '../context/GlobalContext';
 
 const Comparator = () => {
@@ -18,15 +18,15 @@ const Comparator = () => {
     }
   };
 
-  const handleFirstCar = async (e) => {
+  const handleFirstCar = useCallback(async (e) => {
     const carId = parseInt(e.target.value);
     setFirstCar(await fetchCar(carId));
-  };
+  }, [fetchCar]);
 
-  const handleLastCar = async (e) => {
+  const handleLastCar = useCallback(async (e) => {
     const carId = parseInt(e.target.value);
     setLastCar(await fetchCar(carId));
-  };
+  }, [fetchCar]);
 
   return (
     <div className='container comparatore my-5'>

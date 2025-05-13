@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 
 const GlobalContext = createContext();
 
@@ -21,13 +21,13 @@ const GlobalProvider = ({ children }) => {
     setFilteredCars(data);
   };
 
-  const fetchCar = async (id) => {
+  const fetchCar = useCallback(async (id) => {
     const response = await fetch(`http://localhost:3001/cars/${id}`);
     const data = await response.json();
     setCar(data.car);
-  };
+  }, []);
 
-  const toggleFavorite = async (car) => {
+  const toggleFavorite = useCallback(async (car) => {
     if (!car.logo) {
       const response = await fetch(`http://localhost:3001/cars/${car.id}`);
       const data = await response.json();
@@ -42,7 +42,7 @@ const GlobalProvider = ({ children }) => {
     }
     setFavorites(updatedFavorites);
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
-  };
+  }, [favorites]);
 
   const createCar = async (car) => {
     const response = await fetch(`http://localhost:3001/cars`, {

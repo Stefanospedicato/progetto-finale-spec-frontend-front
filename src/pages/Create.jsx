@@ -156,10 +156,11 @@ const Create = () => {
           <span>Categoria:</span>
           <select className='form-control w-100' onChange={handleChange} name='category'>
             <option value="default">Seleziona una categoria...</option>
-            {categories.map((category, index) => <option key={index}>{category}</option>)}
-            <option value="Crossover">Crossover</option>
             <option value="Coupet">Coupet</option>
             <option value="Cabriolet">Cabriolet</option>
+            {categories.map((category, index) => <option key={index}>{category}</option>)}
+            <option value="D'Epoca">D'Epoca</option>
+            <option value="Crossover">Crossover</option>
           </select>
           {formData.category === 'default' && <span className='text-danger'>Selezionare una categoria valida</span>}
         </label>
@@ -177,7 +178,7 @@ const Create = () => {
         </label>
         <h3 className="text-center my-3">CARATTERISTICHE TECNICHE</h3>
         <label className='w-100'>
-          <span>Carburante (se più di uno separati da una virgola):</span>
+          <span>Carburante:</span>
           <select name="fuelType" defaultValue="default" onChange={handleChange} className='form-control w-100'>
             <option value="default" disabled>Scegli un tipo di carburante...</option>
             <option value="Benzina">Benzina</option>
