@@ -35,7 +35,7 @@ const Comparator = () => {
         <div className='w-50 mx-md-5 mx-1'>
           <select className="form-select text-center " defaultValue={'default'} onChange={handleFirstCar}>
             <option value="default" disabled>Scegli un'automobile...</option>
-            {favorites.length > 0 && <option value="default" disabled className='fw-bold'>Le tue scelte</option>}
+            {favorites.length > 0 && <option value="default" disabled className='fw-bold'>I Desideri</option>}
             {favorites && favorites.map(car => (
               <option key={car.id} value={car.id} className='choises'>{car.title}</option>
             ))}
@@ -49,14 +49,14 @@ const Comparator = () => {
               <img src={firstCar.logo} alt={firstCar.title} className='logo mb-5' />
               <p><span>Scuderia:</span> {firstCar.brand}</p>
               <p><span>Modello:</span> {firstCar.model}</p>
+              <p><span>Categoria:</span> {firstCar.category}</p>
+              <p><span>Prezzo a partire da:</span> {firstCar.price ? firstCar.price.toLocaleString('it-IT') : ''},00 €</p>
+              <p><span>Nazione della scuderia:</span> {firstCar.nationality}</p>
               <p><span>Anno di uscita:</span> {firstCar.releaseYear}</p>
               <p><span>Cambio:</span> {firstCar.trasmissione}</p>
-              <p><span>Prezzo a partire da:</span> {firstCar.price ? firstCar.price.toLocaleString('it-IT') : ''},00 €</p>
               <p><span>Carburante:</span> {firstCar.fuelType ? firstCar.fuelType.join(', ') : ''}</p>
               <p><span>Numero di porte:</span> {firstCar.doors}</p>
-              <p><span>Categoria:</span> {firstCar.category}</p>
-              <p><span>Nazione della scuderia:</span> {firstCar.nationality}</p>
-              <p><span>Potenza motore in cavalli:</span> {firstCar.horsepower} cv</p>
+              <p><span>Potenza:</span> {firstCar.horsepower} cv</p>
               <p><span>Velocità massima:</span> {firstCar.topSpeed} km/h</p>
               {favorites.some(fav => fav.id === firstCar.id) ?
                 <button className='w-100 btn btn-dark mt-3' onClick={() => toggleFavorite(firstCar)}>Rimuovi dai tuoi desideri</button> :
@@ -68,7 +68,7 @@ const Comparator = () => {
         <div className='w-50 mx-md-5 mx-1'>
           <select className="form-select text-center" defaultValue={'default'} onChange={handleLastCar}>
             <option value="default" disabled>Scegli un'automobile...</option>
-            {favorites.length > 0 && <option value="default" disabled className='fw-bold'>Le tue scelte</option>}
+            {favorites.length > 0 && <option value="default" disabled className='fw-bold'>I Desideri</option>}
             {favorites && favorites.map(car => (
               <option key={car.id} value={car.id} className='choises'>{car.title}</option>
             ))}
@@ -82,14 +82,14 @@ const Comparator = () => {
               <img src={lastCar.logo} alt={lastCar.title} className='logo mb-5' />
               <p><span>Scuderia:</span> {lastCar.brand}</p>
               <p><span>Modello:</span> {lastCar.model}</p>
+              <p><span>Categoria:</span> {lastCar.category}</p>
+              <p><span>Prezzo a partire da:</span> {lastCar.price ? lastCar.price.toLocaleString('it-IT') : ''},00 €</p>
+              <p><span>Nazione della scuderia:</span> {lastCar.nationality}</p>
               <p><span>Anno di uscita:</span> {lastCar.releaseYear}</p>
               <p><span>Cambio:</span> {lastCar.trasmissione}</p>
-              <p><span>Prezzo a partire da:</span> {lastCar.price ? lastCar.price.toLocaleString('it-IT') : ''},00 €</p>
               <p><span>Carburante:</span> {lastCar.fuelType ? lastCar.fuelType.join(', ') : ''}</p>
               <p><span>Numero di porte:</span> {lastCar.doors}</p>
-              <p><span>Categoria:</span> {lastCar.category}</p>
-              <p><span>Nazione della scuderia:</span> {lastCar.nationality}</p>
-              <p><span>Potenza motore in cavalli:</span> {lastCar.horsepower} cv</p>
+              <p><span>Potenza:</span> {lastCar.horsepower} cv</p>
               <p><span>Velocità massima:</span> {lastCar.topSpeed} km/h</p>
               {favorites.some(fav => fav.id === lastCar.id) ?
                 <button className='w-100 btn btn-dark mt-3' onClick={() => toggleFavorite(lastCar)}>Rimuovi dai desideri</button> :

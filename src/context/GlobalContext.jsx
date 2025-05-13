@@ -44,7 +44,22 @@ const GlobalProvider = ({ children }) => {
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
   };
 
-  const value = { fetchCarsList, cars, filteredCars, setFilteredCars, fetchCar, car, favorites, toggleFavorite };
+  const createCar = async (car) => {
+    const response = await fetch(`http://localhost:3001/cars`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(car),
+    });
+    const data = await response.json();
+    setCars(prevCars => [...prevCars, data.car]);
+    setFilteredCars(prevFilteredCars => [...prevFilteredCars, data.car]);
+    return data.car;
+  };
+
+
+  const value = { fetchCarsList, cars, filteredCars, setFilteredCars, fetchCar, car, favorites, toggleFavorite, createCar };
 
   return <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>;
 };

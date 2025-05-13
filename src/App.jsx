@@ -7,6 +7,7 @@ import Homepage from './pages/Homepage'
 import Detail from './pages/Detail'
 import Comparator from './pages/Comparator'
 import Favorites from './pages/Favorites'
+import Create from './pages/Create'
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
             <Route path='/cars' element={<CarsList />} />
             <Route path='/comparator' element={<Comparator />} />
             <Route path='/favorites' element={<Favorites />} />
+            <Route path='/create' element={<Create />} />
             <Route path='/cars/:id' element={<Detail />} />
           </Route>
         </Routes>

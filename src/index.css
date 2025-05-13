@@ -6,6 +6,10 @@
   color: whitesmoke;
 }
 
+html {
+  overflow-y: scroll;
+}
+
 header {
   height: 100px;
   display: flex;
@@ -146,8 +150,7 @@ span {
 
 .favorite-logo {
   user-select: none;
-  aspect-ratio: 1/1;
-  max-width: 150px;
+  max-width: 200px;
 }
 
 .video-home {
@@ -190,6 +193,24 @@ select option {
   font-style: italic;
 }
 
+.icons {
+  fill: rgb(46, 46, 46);
+  font-size: 1.8rem;
+}
+
+.form-control {
+  margin-bottom: 0.7em;
+}
+
+.error-message {
+  color: rgb(255, 77, 77);
+  font-weight: 400;
+  font-size: 0.8em;
+  position: relative;
+  left: 0px;
+  top: -15px;
+}
+
 @media (max-width: 768px) {
   .favorite-card {
     flex-direction: column;
@@ -206,6 +227,11 @@ select option {
   .car-image {
     width: 500px;
     margin-left: 0px;
+  }
+  .favorite-logo {
+    user-select: none;
+    max-width: 200px;
+    margin-bottom: 50px;
   }
 }
 
