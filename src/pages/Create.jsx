@@ -2,51 +2,41 @@ import { useState } from "react";
 import { useGlobalContext } from "../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
 
-const logoLinks = [
-  "https://www.svgrepo.com/show/342292/tesla.svg",
-  "https://www.svgrepo.com/show/305809/bmw.svg",
-  "https://images.seeklogo.com/logo-png/27/2/ford-logo-png_seeklogo-271868.png",
-  "https://cdn.freebiesupply.com/logos/large/2x/volkswagen-1-logo-png-transparent.png",
-  "https://upload.wikimedia.org/wikipedia/commons/9/92/Audi-Logo_2016.svg",
-  "https://www.svgrepo.com/show/446899/mercedes-benz.svg",
-  "https://www.svgrepo.com/show/446911/porsche.svg",
-  "https://www.svgrepo.com/show/306317/lamborghini.svg",
-  "https://upload.wikimedia.org/wikipedia/commons/2/23/Nissan_2020_logo.svg",
-  "https://upload.wikimedia.org/wikipedia/commons/7/78/Toyota_Logo.svg",
-  "https://upload.wikimedia.org/wikipedia/commons/7/78/Toyota_Logo.svg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Volvo-Iron-Mark-Black.svg/1024px-Volvo-Iron-Mark-Black.svg.png",
-  "https://upload.wikimedia.org/wikipedia/it/thumb/f/fe/Peugeot_2021.svg/1200px-Peugeot_2021.svg.png",
-  "https://www.svgrepo.com/show/446899/mercedes-benz.svg",
-  "https://upload.wikimedia.org/wikipedia/it/0/04/Logo_della_Ferrari_S.p.A..svg",
-  "https://www.svgrepo.com/show/446890/lexus.svg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Honda.svg/2560px-Honda.svg.png",
-  "https://www.svgrepo.com/show/306214/hyundai.svg",
-  "https://www.svgrepo.com/show/446903/mitsubishi.svg",
-];
-
 const scuderie = [
-  "Tesla",
-  "BMW",
-  "Ford",
-  "Volkswagen",
-  "Audi",
-  "Mercedes-Benz",
-  "Porsche",
-  "Lamborghini",
-  "Nissan",
-  "Toyota",
-  "Toyota",
-  "Volvo",
-  "Peugeot",
-  "Mercedes-Benz",
-  "Ferrari",
-  "Lexus",
-  "Honda",
-  "Hyundai",
-  "Mitsubishi"
-];
+  { brand: "Abarth", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Abarth_Logo.svg/2560px-Abarth_Logo.svg.png" },
+  { brand: "Alfa Romeo", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Alfa_Romeo_logo.svg/2560px-Alfa_Romeo_logo.svg.png" },
+  { brand: "Audi", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Audi-Logo_2016.svg/2560px-Audi-Logo_2016.svg.png" },
+  { brand: "Bentley", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Bentley_logo.svg/2560px-Bentley_logo.svg.png" },
+  { brand: "BMW", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/BMW_logo_%28gray%29.svg/2560px-BMW_logo_%28gray%29.svg.png" },
+  { brand: "Citroen", logo: "https://upload.wikimedia.org/wikipedia/commons/9/9f/Citroen_2022.svg" },
+  { brand: "Dacia", logo: "https://upload.wikimedia.org/wikipedia/commons/4/41/Dacia-Logo-2021.svg" },
+  { brand: "Ferrari", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Ferrari_logo.svg/2560px-Ferrari_logo.svg.png" },
+  { brand: "Fiat", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/FIAT_logo_%282020%29.svg/2560px-FIAT_logo_%282020%29.svg.png" },
+  { brand: "Hyundai", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Hyundai_logo.svg/2560px-Hyundai_logo.svg.png" },
+  { brand: "Jaguar", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Jaguar_logo.svg/2560px-Jaguar_logo.svg.png" },
+  { brand: "Jeep", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Jeep_logo.svg/2560px-Jeep_logo.svg.png" },
+  { brand: "Lamborghini", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Lamborghini_logo.svg/2560px-Lamborghini_logo.svg.png" },
+  { brand: "Lancia", logo: "https://my.eurococ.eu/files/logo/lancia-logo.svg" },
+  { brand: "Land Rover", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Land_Rover_logo.svg/2560px-Land_Rover_logo.svg.png" },
+  { brand: "Maserati", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Maserati_logo.svg/2560px-Maserati_logo.svg.png" },
+  { brand: "Mercedes-Benz", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Mercedes-AMG_logo.svg/2560px-Mercedes-AMG_logo.svg.png" },
+  { brand: "Mini", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Mini_logo.svg/2560px-Mini_logo.svg.png" },
+  { brand: "Nissan", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Nissan_logo.svg/2560px-Nissan_logo.svg.png" },
+  { brand: "Opel", logo: "https://upload.wikimedia.org/wikipedia/commons/9/9f/Opel-Logo_2017.svg" },
+  { brand: "Peugeot", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Peugeot_2021.svg/2560px-Peugeot_2021.svg.png" },
+  { brand: "Porsche", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Porsche_logo.svg/2560px-Porsche_logo.svg.png" },
+  { brand: "Renault", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b7/Renault_2021_Text.svg" },
+  { brand: "Smart", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Smart.svg/2560px-Smart.svg.png" },
+  { brand: "Tesla", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Tesla_logo.svg/2560px-Tesla_logo.svg.png" },
+  { brand: "Toyota", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Toyota-logo.svg/2560px-Toyota-logo.svg.png" },
+  { brand: "Volkswagen", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Volkswagen.svg/2560px-Volkswagen.svg.png" },
+  { brand: "Volvo", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Volvo-logo.svg/2560px-Volvo-logo.svg.png" },
+]
+
+const fuels = ["Benzina", "Diesel", "Elettrico", "GPL", "Metano", "Plug-In Hybrid", "Benzina, Elettrico", "Diesel, Elettrico", "Benzina, GPL"]
 
 const initialFormData = {
+
   title: '',
   category: '',
   releaseYear: 0,
@@ -83,7 +73,7 @@ const Create = () => {
     setFormData((prevData) => ({
       ...prevData,
       [name]: name === 'fuelType' ? value.split(', ') : value,
-      logo: name === 'logo' ? logoLinks[e.target.selectedIndex - 1] : prevData.logo,
+      logo: name === 'logo' ? scuderie[e.target.selectedIndex - 1].logo : prevData.logo,
       image: name === 'image' && value.trim() !== '' ? e.target.value : 'https://upullit.com.au/wp-content/uploads/placeholder-car.png'
     }));
 
@@ -181,14 +171,9 @@ const Create = () => {
           <span>Carburante:</span>
           <select name="fuelType" defaultValue="default" onChange={handleChange} className='form-control w-100'>
             <option value="default" disabled>Scegli un tipo di carburante...</option>
-            <option value="Benzina">Benzina</option>
-            <option value="Diesel">Diesel</option>
-            <option value="GPL">GPL</option>
-            <option value="Metano">Metano</option>
-            <option value="Plug-In Hybrid">Plug-In Hybrid</option>
-            <option value="Benzina, Elettrico">Benzina, Elettrico</option>
-            <option value="Diesel, Elettrico">Diesel, Elettrico</option>
-            <option value="Benzina, GPL">Benzina, GPL</option>
+            {fuels.map((fuel, index) => (
+              <option key={index} value={fuel}>{fuel}</option>
+            ))}
           </select>
           {formData.fuelType.length === 0 || formData.fuelType[0] === 'default' && <span className='error-message'>Selezionare un tipo di carburante valido</span>}
         </label>
@@ -218,7 +203,7 @@ const Create = () => {
           <span>Logo scuderia (link):</span>
           <select name="logo" onChange={handleChange} defaultValue='default' className='form-control w-100'>
             <option value="default" disabled>Scegli un logo...</option>
-            {scuderie.map((logo, index) => <option key={index}>{logo}</option>)}
+            {scuderie.map((scuderia, i) => <option key={scuderia[i]}>{scuderia.brand}</option>)}
           </select>
         </label>
         <label className='w-100'>
@@ -232,3 +217,4 @@ const Create = () => {
 };
 
 export default Create;
+

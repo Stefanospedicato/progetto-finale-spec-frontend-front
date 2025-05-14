@@ -1,4 +1,3 @@
-import React from 'react';
 import { useGlobalContext } from '../context/GlobalContext';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';

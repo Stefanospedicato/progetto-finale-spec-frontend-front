@@ -21,11 +21,11 @@ const GlobalProvider = ({ children }) => {
     setFilteredCars(data);
   };
 
-  const fetchCar = useCallback(async (id) => {
+  const fetchCar = async (id) => {
     const response = await fetch(`http://localhost:3001/cars/${id}`);
     const data = await response.json();
     setCar(data.car);
-  }, []);
+  };
 
   const toggleFavorite = useCallback(async (car) => {
     if (!car.logo) {

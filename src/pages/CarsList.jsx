@@ -2,6 +2,8 @@ import { useState, useCallback } from 'react';
 import { useGlobalContext } from '../context/GlobalContext';
 import { useNavigate } from 'react-router-dom';
 import { IoIosStar, IoIosStarOutline } from "react-icons/io";
+import { FaArrowDownAZ } from "react-icons/fa6";
+import { FaArrowUpAZ } from "react-icons/fa6";
 
 const CarsList = () => {
   const { cars, favorites, toggleFavorite } = useGlobalContext();
@@ -17,9 +19,7 @@ const CarsList = () => {
     }
   });
 
-  const filteredCars = [...cars]
-    .filter(car => car.title.toLowerCase().includes(search.toLowerCase()))
-    .filter(car => selectedCategory === 'default' || car.category === selectedCategory);
+  const filteredCars = [...cars].filter(car => car.title.toLowerCase().includes(search.toLowerCase())).filter(car => selectedCategory === 'default' || car.category === selectedCategory);
 
   if (sortOrder) {
     filteredCars.sort((a, b) =>
@@ -54,6 +54,7 @@ const CarsList = () => {
 
   return (
     <div className='container my-5 car-list'>
+      {/* //FILTRI */}
       <div className="d-flex flex-column flex-md-row justify-content-between mb-3">
         <div className="input-group w-100 w-md-50 me-md-3 mb-3 mb-md-0">
           <input type="text" className="form-control" placeholder="Cerca un'automobile..."
@@ -62,16 +63,18 @@ const CarsList = () => {
         <div className='d-flex w-100 w-md-50'>
           <span className='align-self-center text-white'>Seleziona categoria: </span>
           <select className='form-select w-100 mx-3' onChange={handleFilter} value={selectedCategory}>
-            <option value="default">Scegli una categoria...</option>
+            <option value="default" disabled>Scegli una categoria...</option>
             {categories.map(category => (
               <option key={category} value={category}>{category}</option>
             ))}
           </select>
           {filteredCars.length > 0 && (
-            sortOrder === 'asc' ? <button className='btn btn-light' style={{ width: '20%', marginLeft: '1em' }} onClick={() => handleSort('desc')}>Z-A</button> : <button className='btn btn-light' style={{ width: '20%', marginLeft: '1em' }} onClick={() => handleSort('asc')}>A-Z</button>
+            sortOrder === 'asc' ? <button className='btn btn-info' style={{ width: '20%', marginLeft: '1em' }} onClick={() => handleSort('desc')}><FaArrowDownAZ /></button> : <button className='btn btn-dark' style={{ width: '20%', marginLeft: '1em' }} onClick={() => handleSort('asc')}><FaArrowUpAZ /></button>
           )}
         </div>
       </div>
+      {/* FILTRI */}
+      {/* LISTA */}
       {filteredCars.length > 0 ? (
         filteredCars.map(car => {
           const isFavorite = favorites.some(fav => fav.id === car.id);
@@ -100,6 +103,7 @@ const CarsList = () => {
       ) : (
         <p className='text-danger text-center my-5'>Nessuna macchina disponibile in base ai criteri selezionati. Riprova con un altro filtro o cerca un altro modello.</p>
       )}
+      {/* LISTA */}
     </div>
   );
 };

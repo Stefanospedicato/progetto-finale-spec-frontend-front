@@ -33,6 +33,7 @@ const Comparator = () => {
       <h1 className='text-center'>CONFRONTA DUE AUTOMOBILI</h1>
       <section className='my-5 d-flex justify-content-center'>
         <div className='w-50 mx-md-5 mx-1'>
+          {/* PRIMA AUTOMOBILE */}
           <select className="form-select text-center " defaultValue={'default'} onChange={handleFirstCar}>
             <option value="default" disabled>Scegli un'automobile...</option>
             {favorites.length > 0 && <option value="default" disabled className='fw-bold'>I Desideri</option>}
@@ -65,6 +66,9 @@ const Comparator = () => {
             </div>
           )}
         </div>
+        {/* PRIMA AUTOMOBILE */}
+
+        {/* SECONDA AUTOMOBILE */}
         <div className='w-50 mx-md-5 mx-1'>
           <select className="form-select text-center" defaultValue={'default'} onChange={handleLastCar}>
             <option value="default" disabled>Scegli un'automobile...</option>
@@ -98,6 +102,7 @@ const Comparator = () => {
             </div>
           )}
         </div>
+        {/* SECONDA AUTOMOBILE */}
       </section >
     </div >
   );

@@ -76,11 +76,11 @@ span {
 .car-image {
   overflow: hidden;
   width: 700px;
-  margin-left: 40px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 40px rgb(141, 137, 137);
   img {
     aspect-ratio: 16/9;
     object-fit: cover;
-    opacity: 0.95;
   }
 }
 
