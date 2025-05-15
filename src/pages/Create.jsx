@@ -15,7 +15,7 @@ const scuderie = [
   { brand: "Hyundai", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Hyundai_logo.svg/2560px-Hyundai_logo.svg.png" },
   { brand: "Jaguar", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Jaguar_logo.svg/2560px-Jaguar_logo.svg.png" },
   { brand: "Jeep", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Jeep_logo.svg/2560px-Jeep_logo.svg.png" },
-  { brand: "Lamborghini", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Lamborghini_logo.svg/2560px-Lamborghini_logo.svg.png" },
+  { brand: "Lamborghini", logo: "https://www.svgrepo.com/show/306317/lamborghini.svg" },
   { brand: "Lancia", logo: "https://my.eurococ.eu/files/logo/lancia-logo.svg" },
   { brand: "Land Rover", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Land_Rover_logo.svg/2560px-Land_Rover_logo.svg.png" },
   { brand: "Maserati", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Maserati_logo.svg/2560px-Maserati_logo.svg.png" },
@@ -85,7 +85,7 @@ const Create = () => {
     const transformedData = {
       ...formData,
       releaseYear: parseInt(formData.releaseYear),
-      price: parseFloat(formData.price),
+      price: parseInt(formData.price),
       doors: parseInt(formData.doors),
       horsepower: parseInt(formData.horsepower),
       topSpeed: parseInt(formData.topSpeed),
@@ -95,9 +95,8 @@ const Create = () => {
       return;
     }
     createCar(transformedData);
-    console.log('Dati inviati:', transformedData);
-    alert('Automobile aggiunta con successo');
-    navigate('/cars');
+    alert('Automobile aggiunta con successo!');
+    navigate(`/cars/${cars.length - 1}`);
   };
 
   const isValid = (formData) => {

@@ -40,7 +40,7 @@ const CarsList = () => {
   const handleSearch = useCallback(
     debounce((e) => {
       setSearch(e.target.value);
-    }, 1000),
+    }, 600),
     []
   );
 
@@ -63,13 +63,15 @@ const CarsList = () => {
         <div className='d-flex w-100 w-md-50'>
           <span className='align-self-center text-white'>Seleziona categoria: </span>
           <select className='form-select w-100 mx-3' onChange={handleFilter} value={selectedCategory}>
-            <option value="default" disabled>Scegli una categoria...</option>
+            <option value="default">Scegli una categoria...</option>
             {categories.map(category => (
               <option key={category} value={category}>{category}</option>
             ))}
           </select>
           {filteredCars.length > 0 && (
-            sortOrder === 'asc' ? <button className='btn btn-info' style={{ width: '20%', marginLeft: '1em' }} onClick={() => handleSort('desc')}><FaArrowDownAZ /></button> : <button className='btn btn-dark' style={{ width: '20%', marginLeft: '1em' }} onClick={() => handleSort('asc')}><FaArrowUpAZ /></button>
+            sortOrder === 'asc' ? <button className='btn btn-info' style={{ width: '20%', marginLeft: '1em' }} onClick={() => handleSort('desc')}><FaArrowDownAZ /></button>
+              :
+              <button className='btn btn-dark' style={{ width: '20%', marginLeft: '1em' }} onClick={() => handleSort('asc')}><FaArrowUpAZ /></button>
           )}
         </div>
       </div>
