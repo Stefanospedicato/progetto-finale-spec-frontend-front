@@ -202,7 +202,7 @@ const Create = () => {
           <span>Logo scuderia (link):</span>
           <select name="logo" onChange={handleChange} defaultValue='default' className='form-control w-100'>
             <option value="default" disabled>Scegli un logo...</option>
-            {scuderie.map((scuderia, i) => <option key={scuderia[i]}>{scuderia.brand}</option>)}
+            {scuderie.map((scuderia, i) => <option key={i}>{scuderia.brand}</option>)}
           </select>
         </label>
         <label className='w-100'>

@@ -7,6 +7,8 @@ const GlobalProvider = ({ children }) => {
   const [car, setCar] = useState({});
   const [filteredCars, setFilteredCars] = useState([]);
   const [favorites, setFavorites] = useState([]);
+  const apiUrl = import.meta.env.VITE_API_URL;
+
 
   useEffect(() => {
     fetchCarsList();
@@ -15,21 +17,21 @@ const GlobalProvider = ({ children }) => {
   }, []);
 
   const fetchCarsList = async () => {
-    const response = await fetch(`http://localhost:3001/cars`);
+    const response = await fetch(`${apiUrl}/cars`);
     const data = await response.json();
     setCars(data);
     setFilteredCars(data);
   };
 
   const fetchCar = async (id) => {
-    const response = await fetch(`http://localhost:3001/cars/${id}`);
+    const response = await fetch(`${apiUrl}/cars/${id}`);
     const data = await response.json();
     setCar(data.car);
   };
 
   const toggleFavorite = useCallback(async (car) => {
     if (!car.logo) {
-      const response = await fetch(`http://localhost:3001/cars/${car.id}`);
+      const response = await fetch(`${apiUrl}/cars/${car.id}`);
       const data = await response.json();
       car = data.car;
     }
@@ -45,7 +47,7 @@ const GlobalProvider = ({ children }) => {
   }, [favorites]);
 
   const createCar = async (car) => {
-    const response = await fetch(`http://localhost:3001/cars`, {
+    const response = await fetch(`${apiUrl}/cars`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
