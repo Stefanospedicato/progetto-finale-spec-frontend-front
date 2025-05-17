@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { useGlobalContext } from '../context/GlobalContext';
 import { useNavigate } from 'react-router-dom';
 import { IoIosStar, IoIosStarOutline } from "react-icons/io";
@@ -19,13 +19,17 @@ const CarsList = () => {
     }
   });
 
-  const filteredCars = [...cars].filter(car => car.title.toLowerCase().includes(search.toLowerCase())).filter(car => selectedCategory === 'default' || car.category === selectedCategory);
-
-  if (sortOrder) {
-    filteredCars.sort((a, b) =>
-      sortOrder === 'asc' ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title)
-    );
+  function carFilter() {
+    const filteredCars = [...cars].filter(car => car.title.toLowerCase().includes(search.toLowerCase())).filter(car => selectedCategory === 'default' || car.category === selectedCategory);
+    if (sortOrder) {
+      filteredCars.sort((a, b) =>
+        sortOrder === 'asc' ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title)
+      );
+    }
+    return filteredCars
   }
+
+  const filteredCars = useMemo(carFilter, [cars, selectedCategory, search, sortOrder])
 
   function debounce(func, delay) {
     let timer;

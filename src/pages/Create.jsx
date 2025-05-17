@@ -96,7 +96,7 @@ const Create = () => {
     }
     createCar(transformedData);
     alert('Automobile aggiunta con successo!');
-    navigate(`/cars/${cars.length - 1}`);
+    navigate(`/cars}`);
   };
 
   const isValid = (formData) => {
