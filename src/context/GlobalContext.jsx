@@ -61,7 +61,7 @@ const GlobalProvider = ({ children }) => {
   };
 
 
-  const value = { fetchCarsList, cars, filteredCars, setFilteredCars, fetchCar, car, favorites, toggleFavorite, createCar };
+  const value = { fetchCarsList, cars, filteredCars, setFilteredCars, fetchCar, car, favorites, toggleFavorite, createCar, apiUrl };
 
   return <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>;
 };

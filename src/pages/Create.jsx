@@ -58,7 +58,7 @@ const initialFormData = {
 const Create = () => {
 
   const [formData, setFormData] = useState(initialFormData);
-  const { createCar, cars } = useGlobalContext();
+  const { createCar, cars, apiUrl } = useGlobalContext();
   const navigate = useNavigate();
 
   const categories = [];
@@ -96,7 +96,7 @@ const Create = () => {
     }
     createCar(transformedData);
     alert('Automobile aggiunta con successo!');
-    navigate(`/cars}`);
+    navigate('/cars');
   };
 
   const isValid = (formData) => {
