@@ -1,7 +1,8 @@
 import { useState, useCallback, useMemo } from 'react';
 import { useGlobalContext } from '../context/GlobalContext';
 import { useNavigate } from 'react-router-dom';
-import { IoIosStar, IoIosStarOutline } from "react-icons/io";
+import { FaCircleCheck } from "react-icons/fa6";
+import { FaCirclePlus } from "react-icons/fa6";
 import { FaArrowDownAZ } from "react-icons/fa6";
 import { FaArrowUpAZ } from "react-icons/fa6";
 
@@ -59,7 +60,7 @@ const CarsList = () => {
   return (
     <div className='container my-5 car-list'>
       {/* //FILTRI */}
-      <div className="d-flex flex-column flex-md-row justify-content-between mb-3">
+      <div className="d-flex flex-column flex-md-row justify-content-between mb-4">
         <div className="input-group w-100 w-md-50 me-md-3 mb-3 mb-md-0">
           <input type="text" className="form-control" placeholder="Cerca un'automobile..."
             onChange={handleSearch} />
@@ -85,19 +86,19 @@ const CarsList = () => {
         filteredCars.map(car => {
           const isFavorite = favorites.some(fav => fav.id === car.id);
           return (
-            <div className='info-card pointer text-center d-flex justify-content-between' onClick={() => navigate(`/cars/${car.id}`)} key={car.id}>
+            <div className='list-card pointer text-center d-flex justify-content-between m-2' onClick={() => navigate(`/cars/${car.id}`)} key={car.id}>
               <div className='d-flex flex-column justify-content-center mx-auto'>
                 <h4 className='mx-auto'>{car.title}</h4>
-                <h6 className='mx-auto'>Categoria: {car.category}</h6>
+                <h6 className='mx-auto'>Categoria:<span className='text-info p-1'>{car.category}</span> </h6>
               </div>
               <div className='align-self-center'>
                 {isFavorite ? (
-                  <IoIosStar className='full-star pointer' onClick={(event) => {
+                  <FaCircleCheck className='full-star' onClick={(event) => {
                     event.stopPropagation();
                     toggleFavorite(car);
                   }} />
                 ) : (
-                  <IoIosStarOutline className='empty-star pointer' onClick={(event) => {
+                  <FaCirclePlus className='empty-star' onClick={(event) => {
                     event.stopPropagation();
                     toggleFavorite(car);
                   }} />

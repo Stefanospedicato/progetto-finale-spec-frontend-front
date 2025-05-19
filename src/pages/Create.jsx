@@ -19,7 +19,7 @@ const scuderie = [
   { brand: "Lancia", logo: "https://my.eurococ.eu/files/logo/lancia-logo.svg" },
   { brand: "Land Rover", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Land_Rover_logo.svg/2560px-Land_Rover_logo.svg.png" },
   { brand: "Maserati", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Maserati_logo.svg/2560px-Maserati_logo.svg.png" },
-  { brand: "Mercedes-Benz", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Mercedes-AMG_logo.svg/2560px-Mercedes-AMG_logo.svg.png" },
+  { brand: "Mercedes-Benz", logo: "https://www.svgrepo.com/show/446899/mercedes-benz.svg" },
   { brand: "Mini", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Mini_logo.svg/2560px-Mini_logo.svg.png" },
   { brand: "Nissan", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Nissan_logo.svg/2560px-Nissan_logo.svg.png" },
   { brand: "Opel", logo: "https://upload.wikimedia.org/wikipedia/commons/9/9f/Opel-Logo_2017.svg" },
@@ -122,27 +122,23 @@ const Create = () => {
       <h1 className='text-center'>AGGIUNGI UNA NUOVA AUTOMOBILE</h1>
       <form onSubmit={handleSubmit}>
         <label className='w-100'>
-          <span>Titolo:</span>
+          <span>Titolo: {formData.title === '' && <span className='error-message'>Il campo non può essere vuoto!</span>}{formData.title !== '' && <span className='error-message text-success'>✔</span>}</span>
           <input type="text" placeholder="es: Fiat 500, Volkswagen T-ROC, Alfa Romeo Tonale..." className='form-control w-100' onChange={handleChange} name='title' />
-          {formData.title === '' && <span className='error-message'>Il campo non può essere vuoto</span>}
         </label>
         <label className='w-100'>
-          <span>Scuderia:</span>
+          <span>Scuderia: {formData.brand === '' && <span className='error-message'>Il campo non può essere vuoto!</span>}{formData.brand !== '' && <span className='error-message text-success'>✔</span>}</span>
           <input type="text" placeholder="es: Citroen, Pagani, McLaren..." className='form-control w-100' onChange={handleChange} name='brand' />
-          {formData.brand === '' && <span className='error-message'>Il campo non può essere vuoto</span>}
         </label>
         <label className='w-100'>
-          <span>Modello:</span>
+          <span>Modello: {formData.model === '' && <span className='error-message'>Il campo non può essere vuoto!</span>}{formData.model !== '' && <span className='error-message text-success'>✔</span>}</span>
           <input type="text" placeholder="es: A5, CLA, Giulia, Model X..." className='form-control w-100' onChange={handleChange} name='model' />
-          {formData.model === '' && <span className='error-message'>Il campo non può essere vuoto</span>}
         </label>
         <label className='w-100'>
-          <span>Nazionalità scuderia:</span>
+          <span>Nazionalità scuderia: {formData.nationality === '' && <span className='error-message'>Il campo non può essere vuoto!</span>}{formData.nationality !== '' && <span className='error-message text-success'>✔</span>}</span>
           <input type="text" placeholder="es: Germania, Italia, Francia, USA..." className='form-control w-100' onChange={handleChange} name='nationality' />
-          {formData.nationality === '' && <span className='error-message'>Il campo non può essere vuoto</span>}
         </label>
         <label className='w-100'>
-          <span>Categoria:</span>
+          <span>Categoria: {formData.category === 'default' && <span className='error-message'>Seleziona una categoria valida!</span>}{formData.category !== 'default' && <span className='error-message text-success'>✔</span>}</span>
           <select className='form-control w-100' onChange={handleChange} name='category'>
             <option value="default">Seleziona una categoria...</option>
             <option value="Coupet">Coupet</option>
@@ -151,50 +147,51 @@ const Create = () => {
             <option value="D'Epoca">D'Epoca</option>
             <option value="Crossover">Crossover</option>
           </select>
-          {formData.category === 'default' && <span className='text-danger'>Selezionare una categoria valida</span>}
         </label>
         <label className='w-100'>
-          <span>Anno di uscita:</span>
+          <span>Anno di uscita:
+            {formData.releaseYear < 1900 || formData.releaseYear > new Date().getFullYear() ? (
+              <span className='error-message'>Digitare un anno compreso tra 1900 e il {new Date().getFullYear()}</span>
+            ) : formData.releaseYear >= 1900 && (
+              <span className='error-message text-success'>✔</span>
+            )}
+          </span>
           <input type="number" min={1900} max={new Date().getFullYear()} className='form-control w-100' onChange={handleChange} name='releaseYear' />
         </label>
         <label className='w-100'>
-          <span>A partire da euro:</span>
+          <span>A partire da euro: {formData.price < 1 && <span className='error-message'>Il prezzo non può essere zero</span>}{formData.price > 0 && <span className='error-message text-success'>✔</span>}</span>
           <input type="number" min={0} className='form-control w-100' onChange={handleChange} name='price' />
         </label>
         <label className='w-100'>
-          <span>Descrizione:</span>
+          <span>Descrizione:{formData.description !== '' && <span className='error-message text-success'>✔</span>}</span>
           <textarea type="text" placeholder="Inserisci una descrizione..." className='form-control w-100' onChange={handleChange} name='description' />
         </label>
         <h3 className="text-center my-3">CARATTERISTICHE TECNICHE</h3>
         <label className='w-100'>
-          <span>Carburante:</span>
-          <select name="fuelType" defaultValue="default" onChange={handleChange} className='form-control w-100'>
-            <option value="default" disabled>Scegli un tipo di carburante...</option>
+          <span>Carburante: {formData.fuelType !== '' && <span className='error-message text-success'>✔</span>}</span>
+          <select name="fuelType" defaultValue="Benzina" onChange={handleChange} className='form-control w-100'>
             {fuels.map((fuel, index) => (
               <option key={index} value={fuel}>{fuel}</option>
             ))}
           </select>
-          {formData.fuelType.length === 0 || formData.fuelType[0] === 'default' && <span className='error-message'>Selezionare un tipo di carburante valido</span>}
         </label>
         <label className='w-100'>
-          <span>Cambio:</span>
+          <span>Cambio: {formData.trasmissione !== '' && <span className='error-message text-success'>✔</span>}</span>
           <select className='form-control w-100' defaultValue='default' onChange={handleChange} name='trasmissione'>
-            <option value="default" disabled>Seleziona un cambio...</option>
-            <option value="Manuale">Manuale</option>
             <option value="Automatico">Automatico</option>
+            <option value="Manuale">Manuale</option>
           </select>
-          {formData.trasmissione === 'default' && <span className='error-message'>Selezionare un cambio valido</span>}
         </label>
         <label className='w-100'>
-          <span>Numero di porte:</span>
+          <span>Numero di porte: {formData.doors > 0 && <span className='error-message text-success'>✔</span>}</span>
           <input type="number" min={1} max={7} className='form-control w-100' onChange={handleChange} name='doors' />
         </label>
         <label className='w-100'>
-          <span>Potenza in CV:</span>
+          <span>Potenza in CV: {formData.horsepower > 0 && <span className='error-message text-success'>✔</span>}</span>
           <input type="number" min={0} className='form-control w-100' onChange={handleChange} name='horsepower' />
         </label>
         <label className='w-100'>
-          <span>Velocità massima in km/h:</span>
+          <span>Velocità massima in km/h: {formData.topSpeed > 0 && <span className='error-message text-success'>✔</span>}</span>
           <input type="number" min={0} className='form-control w-100' onChange={handleChange} name='topSpeed' />
         </label>
         <h3 className="text-center my-3">CARICA LE IMMAGINI</h3>

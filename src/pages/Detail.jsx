@@ -1,7 +1,8 @@
 import { useGlobalContext } from '../context/GlobalContext';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import { IoIosStar, IoIosStarOutline } from "react-icons/io";
+import { FaCircleCheck } from "react-icons/fa6";
+import { FaCirclePlus } from "react-icons/fa6";
 
 
 const Detail = () => {
@@ -20,15 +21,15 @@ const Detail = () => {
         <div className='noselect mb-3 w-100 w-md-75 align-self-center'>
           <h1>
             {isFavorite ?
-              <IoIosStar className='full-star-detail p-2' onClick={() => toggleFavorite(car)} /> :
-              <IoIosStarOutline className='empty-star-detail p-2' onClick={() => toggleFavorite(car)} />
+              <FaCircleCheck className='full-star-detail p-2' onClick={() => toggleFavorite(car)} /> :
+              <FaCirclePlus className='empty-star-detail p-2' onClick={() => toggleFavorite(car)} />
             }
             {car.title}
           </h1>
         </div>
         <img src={car.logo} alt={car.title} className='logo' />
       </div>
-      <p className='my-3 description'> {car.description}</p>
+      <p className='my-3 description info-card'> {car.description}</p>
       <div className='d-flex flex-lg-row flex-column justify-content-between'>
         <div className=''>
           <h3 className='my-4'>Modello:</h3>
