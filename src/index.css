@@ -94,15 +94,17 @@ span {
   user-select: none;
 }
 
-.video-home {
-  width: 100%;
-  height: calc(100vh - 100px);
-}
-
 .full-star {
   cursor: pointer;
   font-size: 1.5em;
   fill: #0dcaf0;
+  margin-right: 15px;
+}
+
+.empty-star {
+  cursor: pointer;
+  font-size: 1.5em;
+  margin-right: 15px;
 }
 
 .full-star-detail {
@@ -112,11 +114,6 @@ span {
 
 .empty-star-detail {
   cursor: pointer;
-}
-
-.empty-star {
-  cursor: pointer;
-  font-size: 1.5em;
 }
 
 .overlay {
@@ -168,12 +165,14 @@ span {
   align-items: center;
   overflow: hidden;
   z-index: -1;
+  transition: 0s all;
 }
 
 video {
   width: 100vw;
   height: 100vh;
   transform: scale(2);
+  transition: 0s all;
 }
 
 .btn-grey {
